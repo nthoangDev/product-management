@@ -41,3 +41,23 @@ block main
                             td 
                                 button.btn.btn-warning.btn-sm.mx-2 Sửa 
                                 button.btn.btn-danger.btn-sm.ml-1.mx-2 Xóa
+
+    nav 
+        ul(class="pagination")
+            if (pagination.currentPage > 1)
+                li(class="page-item")
+                    button(class="page-link" href="#" button-pagi=pagination.currentPage - 1) Trang trước
+            else
+                li(class="page-item disabled")
+                    button(class="page-link" href="#") Trang trước
+            
+            
+            -for(var i=1; i<= pagination.totalPage; i++)
+                li(class=`page-item ${pagination.currentPage == i ? "active" : ""}`)
+                    button(class="page-link" href="#" button-pagi=i) #{i}
+            if (pagination.currentPage < pagination.totalPage)
+                li(class="page-item")
+                    button(class="page-link" href="#"  button-pagi=pagination.currentPage + 1) Kếtiepes
+            else 
+                li(class="page-item disabled")
+                    button(class="page-link" href="#") Kế tiếp

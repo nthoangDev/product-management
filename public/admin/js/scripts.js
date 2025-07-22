@@ -37,3 +37,24 @@ if (searchForm) {
         // console.log(e.target.elements.keyword.value);
     })
 }
+
+btnPagination = document.querySelectorAll("[button-pagi]");
+// console.log(btnPagination);
+
+if (btnPagination){
+    btnPagination.forEach(btn =>{
+        btn.addEventListener("click", ()=>{
+            let url = new URL(window.location.href);
+
+            let page = btn.getAttribute("button-pagi");
+            // console.log(page);
+            if (page){
+                url.searchParams.set("page", page);
+            }else{
+                url.searchParams.delete("delete");
+            }
+
+            window.location.href = url.href;
+        })
+    })
+}
