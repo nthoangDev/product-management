@@ -25,7 +25,7 @@ block main
                         th Tiêu đề
                         th Giá
                         th Trạng thái 
-                        th Hành động 
+                        th Hành động  
                 tbody.table-group-divider 
                     each p, index in products
                         tr 
@@ -36,11 +36,22 @@ block main
                             td #{p.price}$
                             td 
                                 if(p.status == "active")
-                                    a.badge.text-bg-success.text-decoration-none(href="#") Hoạt động
+                                    a.badge.text-bg-success.text-decoration-none(href="javascript:;" data-status=p.status data-id=p.id button-change-status) Hoạt động
                                 else 
-                                    a.badge.text-bg-danger.text-decoration-none(href="#") Dừng hoạt động
+                                    a.badge.text-bg-danger.text-decoration-none(href="javascript:;" data-status=p.status data-id=p.id button-change-status) Dừng hoạt động
                             td 
                                 button.btn.btn-warning.btn-sm.mx-2 Sửa 
                                 button.btn.btn-danger.btn-sm.ml-1.mx-2 Xóa
 
     +pagination(pagination)
+
+    //- Form để gửi lên change status
+    form(
+        action=""
+        method="POST"
+        id="form-change-status"
+        data-path=`${prefixAdmin}/products/change-status`
+    ) 
+
+
+    script(src="/admin/js/product.js") 
